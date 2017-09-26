@@ -1,4 +1,10 @@
 module Api
+  # @resource Providers subcollection
+  #   
+  # This document describes the API for interacting with ManageIQ Providers
+  #
+  # @authorize_with basic_http_auth
+  
   class ProvidersController < BaseController
     TYPE_ATTR         = "type".freeze
     ZONE_ATTR         = "zone".freeze
@@ -17,6 +23,15 @@ module Api
     include Subcollections::CloudTenants
     include Subcollections::CustomAttributes
     include Subcollections::LoadBalancers
+    include Subcollections::Vms
+
+    # return a list of VM's
+    # @summary Return an array of vms
+    # @path [GET] /providers/{id}/vms
+    # @response_type [Array<Object>]
+    # @parameter id(required,path) [string] The id of provider
+    def no_op_vms
+    end
 
     def create_resource(type, _id, data = {})
       assert_id_not_specified(data, type)
