@@ -1,6 +1,18 @@
 module Api
+# @resource Custom Attributes
+# 
+# This document describes the API for interacting with Custom Attributes
+#
+# @authorize_with basic_http_auth
+# 
   module Subcollections
     module CustomAttributes
+      
+      # @!macro custom_attributes_query_resource
+      #   return a list of Custom Attributes
+      #   @summary Fetch Custom Attributes for $1
+      #   @path [GET] /$1/{id}/custom_attributes
+      #   @response_type [Array<Object>]
       def custom_attributes_query_resource(object)
         object.respond_to?(:custom_attributes) ? object.custom_attributes : []
       end

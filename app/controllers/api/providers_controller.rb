@@ -25,12 +25,15 @@ module Api
     include Subcollections::LoadBalancers
     include Subcollections::Vms
 
-    # return a list of VM's
+    # @!macro custom_attributes_query_resource
+    custom_attributes_query_resource "provider"
+
+    # return a array of VM's connected to the provider
     # @summary Return an array of vms
     # @path [GET] /providers/{id}/vms
     # @response_type [Array<Object>]
     # @parameter id(required,path) [string] The id of provider
-    def no_op_vms
+    def provider_vms
     end
 
     def create_resource(type, _id, data = {})
